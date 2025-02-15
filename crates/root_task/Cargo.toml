@@ -1,0 +1,11 @@
+[package]
+authors = ["Nick Twyman <nick@conky.org>"]
+edition = "2024"
+license = "MIT"
+name = "root_task"
+version = "0.0.1"
+
+[dependencies]
+sel4 = {git = "https://github.com/seL4/rust-sel4"}
+sel4-root-task = {git = "https://github.com/seL4/rust-sel4"}
+sel4-sys = {git = "https://github.com/seL4/rust-sel4"}

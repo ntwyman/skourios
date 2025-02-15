@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cargo build --target-dir build/target --artifact-dir build -p root_task",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ],
+        },
+        {
+            "label": "Build Image",
+            "type": "shell",
+            "group": "build",
+            "command": "/opt/seL4/bin/sel4-kernel-loader-add-payload --loader /opt/seL4/bin/sel4-kernel-loader --sel4-prefix /opt/seL4 --app build/root_task.elf -o build/kernel.elf",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "qemu-system-aarch64 -machine virt,virtualization=on -cpu cortex-a57 -m size=1G -serial mon:stdio -nographic -kernel build/kernel.elf",
+            "dependsOn": [
+                "Build Image"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+  "crates/root_task",
+]
+resolver = "2"

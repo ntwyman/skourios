@@ -1,0 +1,21 @@
+{
+    "name": "skourios",
+    "dockerFile": "../docker/Dockerfile",
+    "build": {
+        "args": {
+            "UNAME": "${localEnv:USER}"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": null,
+                "rust-analyzer.check.allTargets": false,
+                "rust-analyzer.cargo.allTargets": false
+            }
+        }
+    }
+}
