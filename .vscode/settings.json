@@ -1,0 +1,4 @@
+{
+    "makefile.phonyOnlyTargets": true,
+    "makefile.configureOnOpen": false
+}

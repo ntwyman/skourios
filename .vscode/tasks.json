@@ -2,12 +2,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
+            "label": "Image",
             "type": "shell",
-            "command": "cargo build --target-dir build/target --artifact-dir build -p root_task",
+            "command": "make image",
             "group": {
                 "kind": "build",
-                "isDefault": true
             },
             "problemMatcher": [
                 "$rustc"
@@ -16,17 +15,49 @@
         {
             "label": "Build Image",
             "type": "shell",
-            "group": "build",
-            "command": "/opt/seL4/bin/sel4-kernel-loader-add-payload --loader /opt/seL4/bin/sel4-kernel-loader --sel4-prefix /opt/seL4 --app build/root_task.elf -o build/kernel.elf",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "make build",
             "problemMatcher": []
         },
         {
             "label": "Run",
             "type": "shell",
-            "command": "qemu-system-aarch64 -machine virt,virtualization=on -cpu cortex-a57 -m size=1G -serial mon:stdio -nographic -kernel build/kernel.elf",
-            "dependsOn": [
-                "Build Image"
-            ],
+            "command": "make run",
+            "problemMatcher": []
+        },
+        {
+            "label": "qemu_debug",
+            "type": "shell",
+            "command": "make debug",
+            "group": {
+                "kind": "build",
+            },
+            "isBackground": true,
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".*",
+                            "file": 1,
+                            "location": 2,
+                            "message": 3
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": ".",
+                        "endsPattern": "target running"
+                    }
+                }
+            ]
+        },
+        {
+            "label": "Kill QEMU",
+            "type": "shell",
+            "command": "pkill qemu",
             "problemMatcher": []
         }
     ]

@@ -91,9 +91,13 @@ RUN adduser $UNAME
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER $UNAME
 
+# Although we don't use the default toolchain directly, we seem to need it
+# to get `rust-gdb` to work.
 RUN set -eux; \
     curl -sSf https://sh.rustup.rs | \
-    bash -s -- -y --no-modify-path --default-toolchain none;
+    bash -s -- -y --no-modify-path --default-toolchain stable;
+
+
 
 ENV PATH=/home/$UNAME/.cargo/bin:$PATH
 

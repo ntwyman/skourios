@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cppdbg",
+            "request": "launch",
+            "name": "Debug Root Task",
+            "miDebuggerPath": "rust-gdb",
+            "miDebuggerServerAddress": "localhost:1234",
+            "program": "${workspaceFolder}/build/root_task.elf",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "qemu_debug",
+            "stopAtConnect": true,
+            // "postDebugTask": "Kill QEMU"
+        }
+    ]
+}
