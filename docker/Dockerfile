@@ -31,6 +31,7 @@ RUN apt-get update -q && apt-get install -y --no-install-recommends \
     bash-completion \
     man \
     sudo \
+    openssh-client \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
