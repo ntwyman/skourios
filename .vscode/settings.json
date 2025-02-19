@@ -1,4 +1,5 @@
 {
     "makefile.phonyOnlyTargets": true,
-    "makefile.configureOnOpen": false
+    "makefile.configureOnOpen": false,
+    "github.copilot.editor.enableAutoCompletions": false
 }
